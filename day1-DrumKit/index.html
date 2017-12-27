@@ -61,23 +61,24 @@
     <audio data-key="76" src="sounds/tink.wav"></audio>
 
     <script>
-        window.addEventListener('keydown', function(e){
+
+        function playSound(e){
             const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
             const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-            console.log(key);
-            if ( !audio ) return; // 中斷function
+            if (!audio) return; // 中斷function，當有其他的音效播起
             audio.currentTime = 0; // 設定播放時間為 0
             audio.play();
             key.classList.add('playing');
-        });
-
+        }
         function removeTransition(e){
             if( e.propertyName !== 'transform') return; // 如果沒有transition效果則中斷
             console.log(this);
             this.classList.remove('playing');
-        };
+        }
+
         const keys = document.querySelectorAll('.key');
         keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+        window.addEventListener('keydown', playSound);
     </script>
 </body>
 </html>
