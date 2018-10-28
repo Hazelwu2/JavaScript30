@@ -1,0 +1,54 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Type Ahead 👀
+    link(rel='stylesheet', href='style.css')
+  body
+    form.search-form
+      input.search(type='text', placeholder='City or State')
+      ul.suggestions
+        li Filter for a city
+        li or a state
+    script.
+      const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+      const cities = [];
+
+      fetch(endpoint)
+        .then(result => result.json())
+        .then(data => cities.push(...data))
+
+      function filterArray(wordToMatch, cities) {
+        return cities.filter(place => {
+          const regex = new RegExp(wordToMatch, 'gi');
+          return place.city.match(regex) || place.state.match(regex);
+        })
+      }
+
+      function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      }
+
+      function displayMatches(){
+        const matchArray = filterArray(this.value, cities);
+        const html = matchArray.map(place => {
+          const regex = new RegExp(this.value, 'gi');
+          const cityName = place.city.replace(regex, `<span>${this.value}</span>`);
+          const stateName = place.state.replace(regex, `<span>${this.value}</span>`);
+          return `
+            <li>
+              <span class='h1'>${cityName}, ${stateName}</span>
+              <span class='population'>${numberWithCommas(place.population)}</span>
+            </li>
+          `;
+        }).join('');
+        //- console.log(html)
+        suggestionArea.innerHTML = html;
+      }
+
+      const searchInput = document.querySelector('.search');
+      const suggestionArea = document.querySelector('.suggestions');
+
+      searchInput.addEventListener('change', displayMatches);
+      searchInput.addEventListener('keyup', displayMatches);
+
