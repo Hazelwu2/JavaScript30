@@ -6,40 +6,40 @@ html(lang='en')
   body
     style.
       html {
-      font-family: sans-serif;
-      background: #ffc600;
+        font-family: sans-serif;
+        background: #ffc600;
       }
       .inbox {
-      max-width: 400px;
-      margin: 50px auto;
-      background: white;
-      border-radius: 5px;
-      box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+        max-width: 400px;
+        margin: 50px auto;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
       }
       .item {
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid #F1F1F1;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #F1F1F1;
       }
       .item:last-child {
-      border-bottom: 0;
+        border-bottom: 0;
       }
       input:checked + p {
-      background: #F9F9F9;
-      text-decoration: line-through;
+        background: #F9F9F9;
+        text-decoration: line-through;
       }
       input[type="checkbox"] {
-      margin: 20px;
+        margin: 20px;
       }
       p {
-      margin: 0;
-      padding: 20px;
-      transition: background 0.2s;
-      flex: 1;
-      font-family:'helvetica neue';
-      font-size: 20px;
-      font-weight: 200;
-      border-left: 1px solid #D1E2FF;
+        margin: 0;
+        padding: 20px;
+        transition: background 0.2s;
+        flex: 1;
+        font-family:'helvetica neue';
+        font-size: 20px;
+        font-weight: 200;
+        border-left: 1px solid #D1E2FF;
       }
     //
       The following is a common layout you would see in an email client.
@@ -72,4 +72,29 @@ html(lang='en')
       .item
         input(type='checkbox')
         p Don't forget to tweet your result!
+      .item
+        button.clearBtn Clear !
     script.
+      const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+      const clearBtn = document.querySelector('.clearBtn');
+      let lastCheck;
+      function handleCheck(e) {
+        let inBetween = false;
+        //- console.log(e)
+
+        if ( e.shiftKey && this.checked ) {
+          checkboxes.forEach(checkbox => {
+            console.log(checkbox);
+            
+            if ( checkbox === this || checkbox === lastCheck) {
+              inBetween = !inBetween;
+              console.log('🙅🏼🙅🏼🙅🏼Starting to check them inbetween!🙅🏼🙅🏼🙅🏼🙅🏼');
+            }
+            if (inBetween) { checkbox.checked = true; }
+          });
+        }
+        lastCheck = this;
+      }
+
+      checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+      clearBtn.addEventListener('click', () => checkboxes.forEach(checkbox => checkbox.checked = false));
