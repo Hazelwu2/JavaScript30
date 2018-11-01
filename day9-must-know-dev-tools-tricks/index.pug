@@ -13,15 +13,45 @@ html(lang='en')
         p.style.fontSize = '50px';
       }
       // Regular
-      
+      console.log('hello');
       // Interpolated
+      console.log('hello, %s', '😂')
       // Styled
+      console.log('%c 格式化', 'font-size: 28px; background: skyblue;')
       // warning!
+      console.warn('警告！！！！！！！！！！');
       // Error :|
+      console.error('😂😂😂😂😂😂😂😂');
       // Info
+      console.info('😂😂😂😂😂😂😂')
       // Testing
+      const p = document.querySelector('p');
+      console.assert(p.classList.contains('ouch'), 'p沒有ouch的class!');
       // clearing
+      console.clear();
       // Viewing DOM Elements
+      console.dir(p);
       // Grouping together
+      console.group();
+        dogs.forEach(dog => console.log(dog));
+      console.groupEnd();
       // counting
+      //- console.count(dog)
+      console.count('hazel')
+      console.count('hazel')
+      console.count('hazel')
+      console.count('coin')
+      console.count('coin')
+      console.count('hazel')
+      console.count('hazel')
+      console.count('coin')
       // timing
+      console.time('Fetching Data');
+      fetch('https://api.github.com/users/wesbos')
+        .then(data => data.json())
+        .then(data => {
+          console.timeEnd('Fetching Data');
+          console.log(data);
+        });
+      console.table(dogs)
+

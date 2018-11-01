@@ -14,54 +14,47 @@
         p.style.fontSize = '50px';
       }
       // Regular
-      console.log(`hello`);
+      console.log('hello');
       // Interpolated
-      console.log('Hello I am a %s string!', '🐣');
+      console.log('hello, %s', '😂')
       // Styled
-      console.log('%c I am some Great Text', 'font-size: 50px; background: skyblue; text-shadow: 3px 10px 5x black');
+      console.log('%c 格式化', 'font-size: 28px; background: skyblue;')
       // warning!
-      console.warn('Oh no!!!!!!!!!!!!!!');
+      console.warn('警告！！！！！！！！！！');
       // Error :|
-      console.error('Shiit! 噴了 11700修車QQ');
+      console.error('😂😂😂😂😂😂😂😂');
       // Info
-      console.info('This is infomation');
+      console.info('😂😂😂😂😂😂😂')
       // Testing
       const p = document.querySelector('p');
-      console.assert(p.classList.contains('ouch'), 'Wrong!!!!!!!!!!!')
+      console.assert(p.classList.contains('ouch'), 'p沒有ouch的class!');
       // clearing
       console.clear();
       // Viewing DOM Elements
-      console.log(p);
       console.dir(p);
-
-      console.clear();
       // Grouping together
-      dogs.forEach(dog => {
-        console.group(`${dog.name}`);
-        console.log(`this is dog name`);
-        console.log(`this is ${dog.name}, age: ${dog.age * 7} year old.`);
-        console.groupEnd(`${dog.name}`);
-      })
+      console.group();
+        dogs.forEach(dog => console.log(dog));
+      console.groupEnd();
       // counting
-      console.count('HaZel');
-      console.count('HaZel');
-      console.count('HaZel');
-      console.count('Coin');
-      console.count('HaZel');
-      console.count('HaZel');
-      console.count('Coin');
-      console.count('HaZel');
-      console.count('HaZel');
-      console.count('Coin');
+      //- console.count(dog)
+      console.count('hazel')
+      console.count('hazel')
+      console.count('hazel')
+      console.count('coin')
+      console.count('coin')
+      console.count('hazel')
+      console.count('hazel')
+      console.count('coin')
       // timing
-      console.time('fetching data');
-      fetch('http://api.github.com/users/webbos')
+      console.time('Fetching Data');
+      fetch('https://api.github.com/users/wesbos')
         .then(data => data.json())
         .then(data => {
-          console.timeEnd('fetching data');
+          console.timeEnd('Fetching Data');
           console.log(data);
-        })
-      console.table(dogs);
+        });
+      console.table(dogs)
     </script>
   </body>
 </html>
