@@ -1,0 +1,19 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title HTML Video Player
+    link(rel='stylesheet', href='style.css')
+  body
+    .player
+      video.player__video.viewer(src='652333414.mp4')
+      .player__controls
+        .progress
+          .progress__filled
+        button.player__button.toggle(title='Toggle Play') ►
+        input.player__slider(type='range', name='volume', min='0', max='1', step='0.05', value='1')
+        input.player__slider(type='range', name='playbackRate', min='0.5', max='2', step='0.1', value='1')
+        button.player__button(data-skip='-10') « 10s
+        button.player__button(data-skip='25') 25s »
+    script(src='script.js')
+
