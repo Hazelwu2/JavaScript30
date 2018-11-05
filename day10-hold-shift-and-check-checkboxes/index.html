@@ -94,20 +94,20 @@
       let lastCheck;
       function handleCheck(e) {
         let inBetween = false;
-        //- console.log(e)
       
         if ( e.shiftKey && this.checked ) {
-          checkboxes.forEach(checkbox => {
-            console.log(checkbox);
+          checkboxes.forEach((checkbox,i) => {
+            //- console.log(checkbox);
             
             if ( checkbox === this || checkbox === lastCheck) {
+              console.log(i+1)
               inBetween = !inBetween;
               console.log('🙅🏼🙅🏼🙅🏼Starting to check them inbetween!🙅🏼🙅🏼🙅🏼🙅🏼');
             }
             if (inBetween) { checkbox.checked = true; }
           });
+          lastCheck = this; 
         }
-        lastCheck = this;
       }
       
       checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
