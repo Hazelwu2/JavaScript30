@@ -1,0 +1,15 @@
+{
+  "name": "day21-geolocation-based-speedometer-and-compass",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "browser-sync start --server --files '*.css, *.html, *.js'"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "^2.26.3"
+  }
+}
